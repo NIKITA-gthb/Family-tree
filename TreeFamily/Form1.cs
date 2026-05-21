@@ -56,17 +56,17 @@ namespace TreeFamily
 
         private void BtnLink_Click(object sender, EventArgs e)
         {
-         
+
         }
 
         private void BtnAncestors_Click(object sender, EventArgs e)
         {
-       
+
         }
 
         private void BtnDescendants_Click(object sender, EventArgs e)
         {
-           
+
         }
         private void UpdateTreeView()
         {

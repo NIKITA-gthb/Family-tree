@@ -32,7 +32,6 @@
             this.btnLink = new System.Windows.Forms.Button();
             this.btnAncestors = new System.Windows.Forms.Button();
             this.btnDescendants = new System.Windows.Forms.Button();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtPassport = new System.Windows.Forms.TextBox();
             this.cmbParent = new System.Windows.Forms.ComboBox();
             this.cmbChild = new System.Windows.Forms.ComboBox();
@@ -49,6 +48,7 @@
             this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAddPerson
@@ -86,13 +86,6 @@
             this.btnDescendants.TabIndex = 3;
             this.btnDescendants.Text = "Нащадки";
             this.btnDescendants.UseVisualStyleBackColor = true;
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Location = new System.Drawing.Point(28, 23);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(112, 20);
-            this.txtFirstName.TabIndex = 4;
             // 
             // txtPassport
             // 
@@ -226,6 +219,13 @@
             this.label7.TabIndex = 20;
             this.label7.Text = "По Батькові";
             // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Location = new System.Drawing.Point(28, 23);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(112, 20);
+            this.txtFirstName.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,7 +265,6 @@
         private System.Windows.Forms.Button btnLink;
         private System.Windows.Forms.Button btnAncestors;
         private System.Windows.Forms.Button btnDescendants;
-        private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtPassport;
         private System.Windows.Forms.ComboBox cmbParent;
         private System.Windows.Forms.ComboBox cmbChild;
@@ -282,6 +281,7 @@
         private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtFirstName;
     }
 }
 
