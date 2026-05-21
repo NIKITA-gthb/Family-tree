@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Xml.Linq;
+
+namespace TreeFamily
+{
+    public partial class Form1 : Form
+    {
+        private FamilyTree tree = new FamilyTree();
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            btnAddPerson.Click += BtnAddPerson_Click;
+            btnLink.Click += BtnLink_Click;
+            btnAncestors.Click += BtnAncestors_Click;
+            btnDescendants.Click += BtnDescendants_Click;
+        }
+
+        private void BtnAddPerson_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text) ||
+                string.IsNullOrWhiteSpace(txtLastName.Text) ||
+                string.IsNullOrWhiteSpace(txtMiddleName.Text) ||
+                string.IsNullOrWhiteSpace(txtPassport.Text))
+            {
+                MessageBox.Show("Помилка! Усі поля (Прізвище, Ім'я, По батькові та Паспорт) є обов'язковими для заповнення.",
+                                "Помилка введення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string fullName = $"{txtLastName.Text.Trim()} {txtFirstName.Text.Trim()} {txtMiddleName.Text.Trim()}";
+
+            var person = new Person
+            {
+                Id = Guid.NewGuid().ToString(),
+                FullName = fullName,
+                PassportData = txtPassport.Text.Trim()
+            };
+
+            tree.AddPerson(person);
+
+            cmbSearch.Items.Add(person);
+            cmbParent.Items.Add(person);
+            cmbChild.Items.Add(person);
+
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            txtMiddleName.Clear();
+            txtPassport.Clear();
+
+            UpdateTreeView();
+        }
+
+        private void BtnLink_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void BtnAncestors_Click(object sender, EventArgs e)
+        {
+       
+        }
+
+        private void BtnDescendants_Click(object sender, EventArgs e)
+        {
+           
+        }
+        private void UpdateTreeView()
+        {
+            treeView1.Nodes.Clear();
+
+            foreach (var person in tree.People)
+            {
+                if (person.Parent == null)
+                {
+                    TreeNode node = new TreeNode(person.ToString()) { Tag = person };
+                    treeView1.Nodes.Add(node);
+                }
+            }
+
+            treeView1.ExpandAll();
+        }
+
+    }
+}
