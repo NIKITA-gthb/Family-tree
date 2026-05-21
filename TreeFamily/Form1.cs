@@ -56,7 +56,20 @@ namespace TreeFamily
 
         private void BtnLink_Click(object sender, EventArgs e)
         {
+            if (cmbParent.SelectedItem == null || cmbChild.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть і батька, і дитину зі списків!");
+                return;
+            }
 
+            Person parent = (Person)cmbParent.SelectedItem;
+            Person child = (Person)cmbChild.SelectedItem;
+
+            tree.AddChild(parent, child);
+
+            UpdateTreeView();
+
+            MessageBox.Show($"Зв'язок створено: {parent.FullName} є батьком/матір'ю для {child.FullName}");
         }
 
         private void BtnAncestors_Click(object sender, EventArgs e)
@@ -77,12 +90,36 @@ namespace TreeFamily
                 if (person.Parent == null)
                 {
                     TreeNode node = new TreeNode(person.ToString()) { Tag = person };
+                    BuildTree(node, person);
                     treeView1.Nodes.Add(node);
                 }
             }
 
             treeView1.ExpandAll();
         }
+        private void BuildTree(TreeNode node, Person person)
+        {
+            foreach (var child in person.Children)
+            {
+                TreeNode childNode = new TreeNode(child.ToString()) { Tag = child };
+                node.Nodes.Add(childNode);
+                BuildTree(childNode, child);
+            }
+        }
 
+        private void txtPassport_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lavel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
