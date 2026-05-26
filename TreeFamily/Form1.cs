@@ -74,7 +74,26 @@ namespace TreeFamily
 
         private void BtnAncestors_Click(object sender, EventArgs e)
         {
+            lstResults.DataSource = null;
+            lstResults.Items.Clear();
 
+            if (cmbSearch.SelectedItem is Person selectedPerson)
+            {
+                List<Person> ancestors = tree.GetAncestors(selectedPerson);
+
+                if (ancestors.Count > 0)
+                {
+                    lstResults.DataSource = ancestors;
+                }
+                else
+                {
+                    MessageBox.Show($"У {selectedPerson.FullName} не знайдено предків у системі (це корінь дерева).", "Пошук завершено");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть особу у списку пошуку!", "Помилка");
+            }
         }
 
         private void BtnDescendants_Click(object sender, EventArgs e)
