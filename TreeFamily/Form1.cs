@@ -98,8 +98,28 @@ namespace TreeFamily
 
         private void BtnDescendants_Click(object sender, EventArgs e)
         {
+            lstResults.DataSource = null;
+            lstResults.Items.Clear();
 
+            if (cmbSearch.SelectedItem is Person selectedPerson)
+            {
+                List<Person> descendants = tree.GetDescendants(selectedPerson);
+
+                if (descendants.Count > 0)
+                {
+                    lstResults.DataSource = descendants;
+                }
+                else
+                {
+                    MessageBox.Show($"У {selectedPerson.FullName} немає нащадків у системі (це кінцевий вузол дерева).", "Пошук завершено");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть особу у списку пошуку!", "Помилка");
+            }
         }
+
         private void UpdateTreeView()
         {
             treeView1.Nodes.Clear();
@@ -131,14 +151,29 @@ namespace TreeFamily
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            Person grandparent = new Person { Id = Guid.NewGuid().ToString(), FullName = "Іван Іванов (Дідусь)", PassportData = "AA111111" };
 
-        }
+            Person parent1 = new Person { Id = Guid.NewGuid().ToString(), FullName = "Петро Іванов (Батько)", PassportData = "BB222222" };
+            Person parent2 = new Person { Id = Guid.NewGuid().ToString(), FullName = "Марія Іванова (Тітка)", PassportData = "CC333333" };
 
-        private void lavel1_Click(object sender, EventArgs e)
-        {
+            Person child1 = new Person { Id = Guid.NewGuid().ToString(), FullName = "Олексій Іванов (Онук)", PassportData = "DD444444" };
+            Person child2 = new Person { Id = Guid.NewGuid().ToString(), FullName = "Олена Іванова (Онучка)", PassportData = "EE555555" };
 
+            tree.AddPerson(grandparent);
+            tree.AddPerson(parent1);
+            tree.AddPerson(parent2);
+            tree.AddPerson(child1);
+            tree.AddPerson(child2);
+
+            tree.AddChild(grandparent, parent1);
+            tree.AddChild(grandparent, parent2);
+
+            tree.AddChild(parent1, child1);
+            tree.AddChild(parent1, child2);
+
+            Person[] allPeople = { grandparent, parent1, parent2, child1, child2 };
         }
     }
 }
