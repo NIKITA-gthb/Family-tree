@@ -151,6 +151,15 @@ namespace TreeFamily
 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lavel1_Click(object sender, EventArgs e)
+        {
+
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             Person grandparent = new Person { Id = Guid.NewGuid().ToString(), FullName = "Іван Іванов (Дідусь)", PassportData = "AA111111" };
@@ -174,6 +183,12 @@ namespace TreeFamily
             tree.AddChild(parent1, child2);
 
             Person[] allPeople = { grandparent, parent1, parent2, child1, child2 };
+       
+            cmbParent.Items.AddRange(allPeople);
+            cmbChild.Items.AddRange(allPeople);
+            cmbSearch.Items.AddRange(allPeople);
+
+            UpdateTreeView();
         }
     }
 }
