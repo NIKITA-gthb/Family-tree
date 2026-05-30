@@ -13,6 +13,8 @@ namespace TreeFamily
         {
             InitializeComponent();
 
+            this.Load += Form1_Load;
+
             btnAddPerson.Click += BtnAddPerson_Click;
             btnLink.Click += BtnLink_Click;
             btnAncestors.Click += BtnAncestors_Click;
